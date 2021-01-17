@@ -58,7 +58,9 @@ ROOT_URLCONF = 'web_store_django.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            Path.joinpath(BASE_DIR, "templates")
+            ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -66,6 +68,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.static',
             ],
         },
     },
@@ -131,3 +134,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Add these new lines
+STATICFILES_DIRS = (
+    Path.joinpath(BASE_DIR, 'static'),
+)
+
+STATIC_ROOT = Path.joinpath(BASE_DIR,  'staticfiles')
